@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Niveau_Filiere</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div>
+	<div class="container spacer mil col-md-6 col-xs-12"  >
+		<div class="panel panel-default">
+			<div class="panel-heading">Ajouter une classe : Niveau et Filière</div>
+			<div class="panel-body">
+				<form th:action= "@{/admin/saveNivFil}" method="post">
+					
+					<div class="container spacer col-md-6 col-xs-12"  >
+					
+					<div class="form-group">
+						<label class="control-label">Niveau: </label>
+						<select class="form-control" th:field="*{nivfil.niveau}">
+    						<option th:value="'1'" th:text="1-année"></option>
+   							<option th:value="'2'" th:text="2-année"></option>
+   							<option th:value="'3'" th:text="3-année"></option>
+						</select>
+						<span class="red" th:errors="${nivfil.niveau}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Filière: </label>
+						<select class="form-control" th:field="*{nivfil.filiere}">
+    						<option th:value="'INFO'" th:text="Informatique"></option>
+   							<option th:value="'SE'" th:text="Statistique-Economie"></option>
+   							<option th:value="'SD'" th:text="Statistique-Demo"></option>
+   							<option th:value="'AF'" th:text="Actuariat-Finance"></option>
+   							<option th:value="'ROAD'" th:text="Recherche-Operationnel"></option>
+						</select>
+						<span class="red" th:errors="${nivfil.filiere}"></span>
+					</div>
+					
+					
+					
+					<div>
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
