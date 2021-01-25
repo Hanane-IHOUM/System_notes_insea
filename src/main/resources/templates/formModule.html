@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Module</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div>
+	<!-- <div class="container spacer mil col-md-6 col-xs-12"  > -->
+		<div class="panel panel-default">
+			<div class="panel-heading">Ajouter un Module et ses éléments</div>
+			<div class="panel-body">
+				<form th:action= "@{/admin/saveModule}" method="post">
+					
+					<div class="container spacer col-md-3 col-xs-12"  >
+					
+					<div class="form-group">
+						<label class="control-label">Nom de module: </label>
+						<input class="form-control" type="text" name="nom" th:value="${module.nom}"/>
+						<span class="red" th:errors="${module.nom}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Niveau: </label>
+						<select class="form-control" th:field="*{nivfil.niveau}">
+    						<option th:value="'1'" th:text="1-année"></option>
+   							<option th:value="'2'" th:text="2-année"></option>
+   							<option th:value="'3'" th:text="3-année"></option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Filière: </label>
+						<select class="form-control" th:field="*{nivfil.filiere}">
+    						<option th:value="'INFO'" th:text="Informatique"></option>
+   							<option th:value="'SE'" th:text="Statistique-Economie"></option>
+   							<option th:value="'SD'" th:text="Statistique-Demo"></option>
+   							<option th:value="'AF'" th:text="Actuariat-Finance"></option>
+   							<option th:value="'ROAD'" th:text="Recherche-Operationnel"></option>
+						</select>
+					</div>
+					</div>
+					
+					<div class="container spacer col-md-4 col-xs-12"  >
+					<div class="form-group">
+						<label class="control-label">Nom d'élément 1: </label>
+						<input class="form-control" type="text" name="elt_nom" th:value="${element1.elt_nom}"/>
+						<span class="red" th:errors="${element1.elt_nom}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Pourcentage d'élément 1: </label>
+						<input class="form-control" type="text" name="pourcentage" th:value="${element1.pourcentage}"/>
+						<span class="red" th:errors="${element1.pourcentage}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date examen normal de l'élément 1: </label>
+						<input type="date" class= "form-control date" name ="date_normal" th:value = "${element1.date_normal}" />
+						<span class="red" th:errors="${element1.date_normal}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date examen rattrapage de l'élément 1: </label>
+						<input type="date" class= "form-control date" name ="date_ratt" th:value = "${element1.date_ratt}" />
+						<span class="red" th:errors="${element1.date_ratt}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Professeur d'élément 1: </label>
+						<input class="form-control" type="text" name="professeur1" th:value="${professeur1}"/>
+					</div>
+					</div>
+					
+					<div class="container spacer col-md-4 col-xs-12"  >
+					<div class="form-group">
+						<label class="control-label">Nom d'élément 2: </label>
+						<input class="form-control" type="text" name="nomelement" th:value="${nomelement}"/>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Pourcentage d'élément 2: </label>
+						<input class="form-control" type="text" name="pourcentageelm" th:value="${pourcentageelm}"/>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date examen normal d'élément 2: </label>
+						<input type="date" class= "form-control date" name ="date1" th:value = "${date1}" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date examen rattrapage d'élément 2: </label>
+						<input type="date" class= "form-control date" name ="date2" th:value = "${date2}" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Professeur d'élément 2: </label>
+						<input class="form-control" type="text" name="professeur2" th:value="${professeur2}"/>
+					</div>
+					
+					<div>
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<!-- </div> -->
+</body>
+</html>

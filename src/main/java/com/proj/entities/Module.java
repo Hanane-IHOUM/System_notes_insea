@@ -17,7 +17,7 @@ public class Module {
 	private long id;
 	
 	@NotNull
-	@Size(min=3,max=15)
+	@Size(min=3,max=100)
 	private String nom;
 	
 	@OneToMany(targetEntity = Element.class, mappedBy = "module")
@@ -31,7 +31,7 @@ public class Module {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Module(@NotNull @Size(min = 3, max = 15) String nom, List<Element> elements, Niv_Fil niv_fil) {
+	public Module(@NotNull @Size(min = 3, max = 100) String nom, List<Element> elements, Niv_Fil niv_fil) {
 		super();
 		this.nom = nom;
 		this.elements = elements;

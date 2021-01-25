@@ -22,8 +22,8 @@ public class Element {
 	private long id;
 	
 	@NotNull
-	@Size(min=3,max=15)
-	private String nom;
+	@Size(min=3,max=100)
+	private String elt_nom;
 	
 	private int pourcentage;
 	
@@ -53,10 +53,12 @@ public class Element {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Element(@NotNull @Size(min = 3, max = 15) String nom, int pourcentage, Date date_normal, Date date_ratt,
+	
+
+	public Element(@NotNull @Size(min = 3, max = 100) String elt_nom, int pourcentage, Date date_normal, Date date_ratt,
 			List<Exam_Normal> exams_normal, List<Exam_Ratt> exams_ratt, Module module, Professeur professeur) {
 		super();
-		this.nom = nom;
+		this.elt_nom = elt_nom;
 		this.pourcentage = pourcentage;
 		this.date_normal = date_normal;
 		this.date_ratt = date_ratt;
@@ -66,6 +68,8 @@ public class Element {
 		this.professeur = professeur;
 	}
 
+
+
 	public long getId() {
 		return id;
 	}
@@ -74,13 +78,19 @@ public class Element {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	
+
+	public String getElt_nom() {
+		return elt_nom;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+
+
+	public void setElt_nom(String elt_nom) {
+		this.elt_nom = elt_nom;
 	}
+
+
 
 	public int getPourcentage() {
 		return pourcentage;
