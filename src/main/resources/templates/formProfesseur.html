@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Niveau_Filiere</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div>
+	<div class="container spacer mil col-md-6 col-xs-12"  >
+		<div class="panel panel-default">
+			<div class="panel-heading">Ajouter un professeur</div>
+			<div class="panel-body">
+				<form th:action= "@{/admin/saveProfesseur}" method="post">
+					
+					<div class="container spacer col-md-6 col-xs-12"  >
+					
+					<div class="form-group">
+						<label class="control-label">Nom et Prénom: </label>
+						<input type="text" name="Username" th:value="${compte.username}"/>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Email: </label>
+						<input type="text" name="email" th:value="${compte.email}"/>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Password: </label>
+						<input type="text" name="password" th:value="${compte.password}"/>
+					</div>
+					
+					
+					<div>
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
