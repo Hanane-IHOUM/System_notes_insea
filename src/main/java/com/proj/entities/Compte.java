@@ -26,8 +26,6 @@ public class Compte {
 	@Size(min=3,max=50)
 	private String password;
 	
-	@NotNull
-	@Size(min=8,max=10)
 	private String role;
 	
 	private boolean active;
@@ -38,7 +36,7 @@ public class Compte {
 	}
 
 	public Compte(@NotNull @Size(min = 3, max = 15) String username, @NotNull @Size(min = 3, max = 50) String email,
-			@NotNull @Size(min = 3, max = 50) String password, @NotNull @Size(min = 8, max = 10) String role,
+			@NotNull @Size(min = 3, max = 50) String password, String role,
 			boolean active) {
 		super();
 		this.username = username;
