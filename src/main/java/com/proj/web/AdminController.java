@@ -1,6 +1,9 @@
 package com.proj.web;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.proj.dao.CompteRepository;
 import com.proj.dao.EtudiantRepository;
+import com.proj.dao.Exam_NormalRepository;
+import com.proj.dao.Exam_RattRepository;
 import com.proj.dao.Niv_FilRepository;
 import com.proj.dao.ProfesseurRepository;
 import com.proj.entities.Compte;
 import com.proj.entities.Element;
 import com.proj.entities.Etudiant;
+import com.proj.entities.Exam_Normal;
+import com.proj.entities.Exam_Ratt;
 import com.proj.entities.Module;
 import com.proj.entities.Niv_Fil;
 import com.proj.entities.Professeur;
@@ -49,6 +56,12 @@ public class AdminController {
 	
 	@Autowired
 	private ElementRepository elementRepository;
+	
+	@Autowired
+	private Exam_NormalRepository exam_normalRepository;
+	
+	@Autowired
+	private Exam_RattRepository exam_rattRepository;
 	
 	
 	@RequestMapping(value="/formNivFil", method=RequestMethod.GET)
@@ -113,9 +126,21 @@ public class AdminController {
 		etudiant.setCompte(compte);
 		etudiant.setNiv_fil(niv_filRepository.chercher(niv_fil.getFiliere(), niv_fil.getNiveau()));
 		etudiantRepository.save(etudiant);
+		
+		List<Module> modules = etudiant.getNiv_fil().getModules();
+		for(Module module : modules) {
+			List<Element> elements = module.getElements();
+			for(Element element : elements) {
+				Exam_Normal exam_normal = new Exam_Normal(0,etudiant,element);
+				Exam_Ratt exam_ratt = new Exam_Ratt(0,etudiant,element);
+				exam_normalRepository.save(exam_normal);
+				exam_rattRepository.save(exam_ratt);
+			}
+		}
 
 		return "redirect:/admin";
 	}
+
 
 	@RequestMapping(value="/formModule", method=RequestMethod.GET)
 	public String formModule(Model model) {
@@ -148,6 +173,9 @@ public class AdminController {
 		moduleRepository.save(module);
 		
 		Compte c1 = compteRepository.chercher(professeur1);
+		System.out.println("########################");
+		System.out.println(c1.getId());
+		System.out.println("########################");
 		
 		Professeur p1 = professeurRepository.chercher(c1.getId());
 		
@@ -173,4 +201,36 @@ public class AdminController {
 		
 		return "redirect:/admin";
 	}
+	@RequestMapping(value="/afficherProfesseurs", method=RequestMethod.GET)
+	public String afficherProfesseurs(Model model) {
+	
+		List<Compte> professeurs = compteRepository.comptesParRole("PROFESSEUR");
+		
+		model.addAttribute("professeurs", professeurs);
+
+		return "afficherProfesseurs";
+	}
+	
+	@RequestMapping(value="/afficherEtudiants", method=RequestMethod.GET)
+	public String afficherEtudiants(Model model) {
+	
+		List<Compte> comptes = compteRepository.comptesParRole("ETUDIANT");
+		
+		List<Etudiant> etudiants = new ArrayList<>();
+		System.out.println("########################################");
+		for(Compte compte : comptes) {
+			System.out.println(compte.getId());
+			etudiants.add(etudiantRepository.findByCompteId(compte.getId()));
+		}
+		
+		model.addAttribute("etudiants", etudiants);
+
+		return "afficherEtudiants";
+	}
+	
+	
 }
+
+
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Niveau_Filiere</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+</head>
+<meta charset="utf-8"/>
+<title>Professeurs</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{css/bootstrap.min.css}"/>
+		
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{css/style.css}"/>
+		
+</head>
+<body >
+
+<div layout:fragment="custom-content" >
+	
+	<div class="container">
+	<h3>Liste des Professeurs</h3>
+	<table class="table">
+	
+		<thead>
+			<tr>
+				<th>ID</th><th>Nom et prénom</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p:${professeurs}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.username}"></td>
+				<td th:text="${p.email}"></td>
+				
+				<td><a th:href="@{/admin/formedit/Professeur(id=${p.id})}">Modifier</a></td>
+				<td><a th:href="@{/admin/supprimer/Professeur(id=${p.id})}">Supprimer</a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+</body>
+</html>
