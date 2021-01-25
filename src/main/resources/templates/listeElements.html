@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layoutProfesseur}">
+		
+<head>
+<meta charset="utf-8"/>
+<title>Mes Elements</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+		
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+		
+</head>
+<body >
+<div layout:fragment="custom-content" >
+<div class="container">
+
+	<img
+    	src="/css/insea.jpg"
+    	alt="[photo insea"
+    	height="120px"
+    	width="200px"
+	/>
+	<span class="prof" th:text="${'Prof. ' + prof.username}"></span>
+	
+	<h3 class = "green">Liste des éléments</h3>
+	
+	
+	
+	<div  th:each="e:${elements}">
+	
+	<table class="table spacer"> 
+	
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nom d'élément</th><th>Nom du module</th><th>Pourcentage d'élément</th>
+				<th>Date examen normal</th>
+				<th>Date examen rattrappage</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr  class="tab">
+				<td th:text="${e.id}"></td>
+				<td th:text="${e.elt_nom}"></td>
+				<td th:text="${e.module.nom}"></td>
+				<td th:text="${e.pourcentage}"></td>
+				<td th:text="${e.date_normal}"></td>
+				<td th:text="${e.date_ratt}"></td>
+				
+				<td><a class = "red" th:href="@{/professeur/lesNotesNorm(id=${e.id})}">Notes Normal</a></td>
+				<td><a class = "red" th:href="@{/professeur/lesNotesRatt(id=${e.id})}">Notes Rattrapage</a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+
+</div>
+</body>
+</html>

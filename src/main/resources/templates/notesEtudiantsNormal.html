@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layoutProfesseur}">
+		
+<head>
+<meta charset="utf-8"/>
+<title>Liste des Notes Normal</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+		
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+		
+</head>
+<body >
+
+<div layout:fragment="custom-content">
+	
+	<div class="container spacer">
+	<h3 class = "green">Liste des Notes de la session Normal  : <span th:text="${elt}"></span></h3>
+	<table class="table">
+	
+		<thead>
+			<tr>
+				<th>ID d'étudiant</th><th>Nom & Prénom</th><th>Note Normal</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="nn:${notesNormal}" >
+		
+				<td th:text="${nn.etudiant.id}"></td>
+				<td th:text="${nn.etudiant.compte.username}"></td>
+				<td> 
+					<form th:action="@{/professeur/editNoteNormal(id=${nn.id})}" method="post">
+						<input type="text" name="note" th:value="${nn.note}"/>
+						
+						&emsp; &emsp;&emsp;<button type="submit" class="btn mybtn">Update Note</button>
+					</form>
+				 
+				 </td>
+				
+				
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+</body>
+</html>

@@ -21,7 +21,7 @@ public class LoginController {
 		}
 		else {
 			if(isProf){
-				return "redirect:/professeur";
+				return "redirect:/professeur/mesElements";
 			}
 		}
 		return "redirect:/admin";

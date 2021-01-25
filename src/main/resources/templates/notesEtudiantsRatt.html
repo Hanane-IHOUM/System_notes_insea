@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layoutProfesseur}">
+		
+<head>
+<meta charset="utf-8"/>
+<title>Liste des Notes Ratt</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+		
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+		
+</head>
+<body >
+
+<div layout:fragment="custom-content">
+	
+	<div class="container spacer">
+	<h3 class = "green">Liste des Notes de la session Rattrapage : <span th:text="${elt}"></span></h3>
+	<table class="table">
+	
+		<thead>
+			<tr>
+				<th>ID d'étudiant</th><th>Nom & Prénom</th><th>Note Apres Ratt</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="nr:${notesRatt}" >
+		
+				<td th:text="${nr.etudiant.id}"></td>
+				<td th:text="${nr.etudiant.compte.username}"></td>
+				
+				<!--
+				<td>
+				<div th:if="${f.etat}">
+  					<p class="etat"> DEJA FAIT </p>
+				</div>
+				<div th:unless="${f.etat}">
+  					<a class="btn mybtn" th:href="@{/operateur/editfichevaccine(id=${f.id})}">Fair</a>
+				</div>
+				</td>
+				  -->
+				
+				<td> 
+				
+					<div th:if="${nr.note<12}">
+					
+					<form th:action="@{/professeur/editNoteRatt(id=${nr.id})}" method="post">
+						<input type="text" name="note" th:value="${nr.note}"/>
+						
+						&emsp;&emsp;&emsp;<button type="submit" class="btn mybtn">Update Note</button>
+					</form>
+				 
+				 	</div>
+				 	
+				 	<div th:unless="${nr.note<12}">
+				 		<label th:text="${nr.note}"> </label>
+  						<span class="etat"> &emsp; &emsp;VALIDE  </span> 
+					</div>
+				 	
+				 </td>
+				
+				
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+</div>
+</body>
+</html>

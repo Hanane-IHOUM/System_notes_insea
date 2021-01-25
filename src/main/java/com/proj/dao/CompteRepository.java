@@ -12,6 +12,9 @@ public interface CompteRepository extends JpaRepository<Compte, Long>{
 	
 	@Query("select c from Compte c where c.username like :x")
 	public Compte chercher(@Param("x")String username);
+	
+	@Query("select c from Compte c where c.email like :x")
+	public Compte chercherparEmail(@Param("x")String email);
 
 }
 

@@ -1,5 +1,6 @@
 .red{
 	color: red;
+	font-weight: bold;
 }
 
 .num{
@@ -14,6 +15,11 @@
 .black{
 	color: black;
 }
+
+.green{
+	color: green;
+}
+
 .spacer{
 	margin-top: 20px;
 }
@@ -58,7 +64,7 @@ background-color: #E8EEF4;
 }
 
 .mybtn{
-	background-color: #EE1654;
+	background-color: green;
 	color: #F4FCF2;
 }
 
@@ -84,4 +90,12 @@ background-color: #E8EEF4;
 .bold{
 	font-weight: bold;
 	font-size:60px;
+}
+
+.tab{
+	height : 100px  ;
+}
+
+.prof{
+	font-weight: bold;
 }
