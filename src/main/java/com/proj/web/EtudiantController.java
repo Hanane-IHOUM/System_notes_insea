@@ -55,9 +55,11 @@ public class EtudiantController {
 	@Autowired
 	private Exam_RattRepository examRattRepository;
 	
+	@Autowired
+	private ElementRepository elementRepository;
 	
 	@RequestMapping(value="/mesNotes")
-	public String index(Model model, HttpServletRequest request) {
+	public String mesNotes(Model model, HttpServletRequest request) {
 		
 		Principal principal = request.getUserPrincipal();
         Compte compte = compteRepository.chercherparEmail(principal.getName());
@@ -76,7 +78,24 @@ public class EtudiantController {
 	}
 	
 	
-	
+	@RequestMapping(value="/Calendrier")
+	public String calendrier(Model model, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+        Compte compte = compteRepository.chercherparEmail(principal.getName());
+        
+        Etudiant etudiant = etudiantRepository.findByCompteId(compte.getId());
+        
+        //List <Exam_Normal> notesNorm = examNormalRepository.chercherNoteNorm(etudiant.getId(), etudiant.getNiv_fil().getId());
+		
+        List <Element> calendrier = elementRepository.cherchercalendrier(etudiant.getNiv_fil().getId());
+        
+        model.addAttribute("compte", compte);
+        model.addAttribute("etudiant", etudiant);
+        model.addAttribute("calendrier", calendrier);
+        
+        return "Calendrier";
+	}
 	
 	
 	
