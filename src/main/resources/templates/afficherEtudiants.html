@@ -1,50 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layoutAdmin}">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <title>Niveau_Filiere</title>
-<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
-		th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 
 <link rel="stylesheet" type="text/css" href="../static/css/style.css"
-		th:href="@{/css/style.css}"/>
+	th:href="@{/css/style.css}" />
 </head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <title>Professeurs</title>
-<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
-		th:href="@{css/bootstrap.min.css}"/>
-		
-<link rel="stylesheet" type="text/css" href="../static/css/style.css"
-		th:href="@{css/style.css}"/>
-		
-</head>
-<body >
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
 
-<div layout:fragment="custom-content" >
-	
-	<div class="container">
-	<h3>Liste des Etudiants</h3>
-	<table class="table">
-	
-		<thead>
-			<tr>
-				<th>ID</th><th>Nom et prénom</th>
-				<th>Email</th><th>Filière</th><th>Niveau</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="e:${etudiants}">
-				<td th:text="${e.compte.id}"></td>
-				<td th:text="${e.compte.username}"></td>
-				<td th:text="${e.compte.email}"></td>
-				<td th:text="${e.niv_fil.filiere}"></td>
-				<td th:text="${e.niv_fil.niveau}"></td>
-				<td><a th:href="@{/admin/supprimer/Etudiant(id=${e.id})}">Supprimer</a></td>
-			</tr>
-		</tbody>
-	</table>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{css/style.css}" />
+
+</head>
+<body>
+
+	<div layout:fragment="custom-content">
+
+		<div class="container">
+			<div class="container spacer">
+				<form th:action="@{/admin/afficherEtudiant}" method="get">
+					<label>Nom et prénom : </label> <input type="text" name="username"
+						th:value="${username}" />
+					<button class="btn btn-primary">Chercher</button>
+				</form>
+			</div>
+			<h3>Liste des Etudiants</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nom et prénom</th>
+						<th>Email</th>
+						<th>Filière</th>
+						<th>Niveau</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="e:${etudiants}">
+						<td th:text="${e.compte.id}"></td>
+						<td th:text="${e.compte.username}"></td>
+						<td th:text="${e.compte.email}"></td>
+						<td th:text="${e.niv_fil.filiere}"></td>
+						<td th:text="${e.niv_fil.niveau}"></td>
+						<td><a th:href="@{/admin/supprimerEtudiant(id=${e.id})}">Supprimer</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 	</div>
-	
-</div>
 </body>
 </html>

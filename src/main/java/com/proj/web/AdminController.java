@@ -217,7 +217,12 @@ public class AdminController {
 	@RequestMapping(value="/afficherProfesseurs", method=RequestMethod.GET)
 	public String afficherProfesseurs(Model model) {
 	
-		List<Compte> professeurs = compteRepository.comptesParRole("PROFESSEUR");
+		List<Compte> comptes = compteRepository.comptesParRole("PROFESSEUR");
+		List<Professeur> professeurs = new ArrayList<>();
+		for(Compte compte : comptes) {
+			System.out.println(compte.getId());
+			professeurs.add(professeurRepository.chercher(compte.getId()));
+		}
 		
 		model.addAttribute("professeurs", professeurs);
 
@@ -241,6 +246,67 @@ public class AdminController {
 		return "afficherEtudiants";
 	}
 	
+	@RequestMapping(value="/afficherEtudiant", method=RequestMethod.GET)
+	public String afficherEtudiant(Model model, @RequestParam(name="username", defaultValue="") String username, HttpServletRequest request) {
+	
+		Etudiant etudiant = etudiantRepository.findByUsername(username);
+		List<Etudiant> etudiants = new ArrayList<>();
+		etudiants.add(etudiant);
+		
+		model.addAttribute("etudiants", etudiants);
+
+		return "afficherEtudiants";
+	}
+	
+	@RequestMapping(value="/afficherProfesseur", method=RequestMethod.GET)
+	public String afficherProfesseur(Model model, @RequestParam(name="username", defaultValue="") String username, HttpServletRequest request) {
+	
+		Professeur professeur = professeurRepository.findByUsername(username);
+		List<Professeur> professeurs = new ArrayList<>();
+		professeurs.add(professeur);
+		
+		model.addAttribute("professeurs", professeurs);
+
+		return "afficherProfesseurs";
+	}
+	
+	@RequestMapping(value="/supprimerProfesseur", method=RequestMethod.GET)
+	public String supprimerProfesseur(Model model, @RequestParam(name="id", defaultValue="") Long id, HttpServletRequest request) {
+		
+		Professeur professeur = professeurRepository.getOne(id);
+		long idCompte = professeur.getCompte().getId();
+		professeurRepository.deleteById(id);
+		compteRepository.deleteById(idCompte);
+		
+		List<Compte> comptes = compteRepository.comptesParRole("PROFESSEUR");
+		List<Professeur> professeurs = new ArrayList<>();
+		for(Compte compte : comptes) {
+			professeurs.add(professeurRepository.chercher(compte.getId()));
+		}
+		
+		model.addAttribute("professeurs", professeurs);
+
+		return "afficherProfesseurs";
+	}
+	
+	@RequestMapping(value="/supprimerEtudiant", method=RequestMethod.GET)
+	public String supprimerEtudiant(Model model, @RequestParam(name="id", defaultValue="") Long id, HttpServletRequest request) {
+	
+		Etudiant etudiant = etudiantRepository.getOne(id);
+		long idCompte = etudiant.getCompte().getId();
+		etudiantRepository.deleteById(id);
+		compteRepository.deleteById(idCompte);
+		
+		List<Compte> comptes = compteRepository.comptesParRole("ETUDIANT");
+		List<Etudiant> etudiants = new ArrayList<>();
+		for(Compte compte : comptes) {
+			etudiants.add(etudiantRepository.findByCompteId(compte.getId()));
+		}
+		
+		model.addAttribute("etudiants", etudiants);
+
+		return "afficherEtudiants";
+	}
 	
 }
 
