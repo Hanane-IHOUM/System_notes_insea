@@ -9,9 +9,18 @@
 <link rel="stylesheet" type="text/css" href="../static/css/style.css"
 		th:href="@{css/style.css}"/>
 </head>
-<body class = "image">
+<body > <!--  class = "image"-->
 	
-	<h1 class= "centre2 bold">Suivi Vaccination - Maroc</h1>
+	<div class="container">
+
+	<img
+    	src="/css/insea.jpg"
+    	alt="photo insea"
+    	height="120px"
+    	width="200px"
+	/>
+	</div>
+	<h1 class= "centre3 bold green">Institut National de Statistique et d'Economie Appliquée</h1>
 	<div class="container spacer mil col-md-6 col-xs-12 centre" >
 		<div class = "container">
 			<span class = "redblod" th:if="${param.error}">
@@ -38,7 +47,7 @@
 					</div>	
 					
 					<div>
-						<button type="submit" class="btn mybtn2">Se connecter</button>
+						<button type="submit" class="btn mybtn">Se connecter</button>
 					</div>
 				</form>
 			</div>

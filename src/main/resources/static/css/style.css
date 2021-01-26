@@ -78,7 +78,7 @@ background-color: #E8EEF4;
 	color : white;
 }
 .image {
-  background-image: url("img.jpg");
+  background-image: url("insea2.jpg");
   background-color: #cccccc;
   height: 500px;
   background-position: center;
@@ -101,8 +101,14 @@ background-color: #E8EEF4;
 }
 
 .centre3 {
-	margin-top: 50px;
-    margin-left: 250px;
+	margin-top: 60px;
+    margin-left: 120px;
     font-weight: bold;
+	font-size:40px;
+}
+
+.centre4 {
+    margin-top: 100px;
+    margin-left: 300px;
 	font-size:40px;
 }

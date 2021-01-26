@@ -17,7 +17,7 @@ public class LoginController {
 		boolean isProf = request.isUserInRole("PROFESSEUR");
 		
 		if(isEtud) {
-			return "redirect:/etudiant";
+			return "redirect:/etudiant/mesNotes";
 		}
 		else {
 			if(isProf){

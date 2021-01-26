@@ -1,6 +1,9 @@
 package com.proj.dao;
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +23,6 @@ public interface Exam_NormalRepository extends JpaRepository<Exam_Normal, Long>{
 	@Query("UPDATE Exam_Normal e SET e.note = :x WHERE e.id = :z")
 	@Transactional
 	public void edit(@Param("x")float note, @Param("z") Long id);
+	
 }
 
