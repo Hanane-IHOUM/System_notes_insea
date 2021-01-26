@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proj.entities.Exam_Normal;
 import com.proj.entities.Exam_Ratt;
 
 public interface Exam_RattRepository extends JpaRepository<Exam_Ratt, Long>{
@@ -19,5 +20,7 @@ public interface Exam_RattRepository extends JpaRepository<Exam_Ratt, Long>{
 	@Query("UPDATE Exam_Ratt e SET e.note = :x WHERE e.id = :z")
 	@Transactional
 	public void edit(@Param("x")float note, @Param("z") Long id);
+	
+
 }
 

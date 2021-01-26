@@ -92,7 +92,7 @@ public class ProfesseurController {
 			  Element element = e.get();
 	
 			  Long IdNF = element.getModule().getNiv_fil().getId();
-			 
+			  
 			  List <Etudiant> etudiants = etudiantRepository.chercher(IdNF);
 			 
 			  List <Exam_Normal> notesNormal= new ArrayList <Exam_Normal> ();
