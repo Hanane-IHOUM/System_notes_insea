@@ -148,7 +148,7 @@ public class AdminController {
 				Exam_Ratt exam_ratt = new Exam_Ratt(0,etudiant,element);
 				exam_normalRepository.save(exam_normal);
 				exam_rattRepository.save(exam_ratt);
-			}
+			} 
 		}
 
 		return "redirect:/admin";
@@ -196,6 +196,15 @@ public class AdminController {
 		element1.setModule(module);
 		elementRepository.save(element1);
 		
+		List<Etudiant> etudiants = module.getNiv_fil().getEtudiants();
+		
+		for(Etudiant etudiant : etudiants) {
+			Exam_Normal exam_normal = new Exam_Normal(0,etudiant,element1);
+			Exam_Ratt exam_ratt = new Exam_Ratt(0,etudiant,element1);
+			exam_normalRepository.save(exam_normal);
+			exam_rattRepository.save(exam_ratt);
+		}
+		
 		Compte c2 = compteRepository.chercher(professeur2);
 		
 		Professeur p2 = professeurRepository.chercher(c2.getId());
@@ -210,6 +219,13 @@ public class AdminController {
 		element2.setModule(module);
 		
 		elementRepository.save(element2);
+		
+		for(Etudiant etudiant : etudiants) {
+			Exam_Normal exam_normal = new Exam_Normal(0,etudiant,element2);
+			Exam_Ratt exam_ratt = new Exam_Ratt(0,etudiant,element2);
+			exam_normalRepository.save(exam_normal);
+			exam_rattRepository.save(exam_ratt);
+		}
 		
 		
 		return "redirect:/admin";
