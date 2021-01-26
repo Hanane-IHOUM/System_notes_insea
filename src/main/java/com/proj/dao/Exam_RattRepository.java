@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proj.entities.Exam_Normal;
 import com.proj.entities.Exam_Ratt;
 
 public interface Exam_RattRepository extends JpaRepository<Exam_Ratt, Long>{
@@ -29,5 +30,6 @@ public interface Exam_RattRepository extends JpaRepository<Exam_Ratt, Long>{
 			+ " inner join Module m on m.id = elt.module.id"
 			+ " where er.etudiant.id like :x and m.niv_fil.id like :y")
 	public List<Exam_Ratt> chercherNoteRatt(@Param("x")Long idetudiant,@Param("y")Long idNivFil );
+
 }
 
