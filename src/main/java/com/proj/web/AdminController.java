@@ -1,5 +1,6 @@
 package com.proj.web;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,17 @@ public class AdminController {
 	
 	@Autowired
 	private Exam_RattRepository exam_rattRepository;
+	
+	
+	@RequestMapping(value="")
+	public String accessDneied(Model model,HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+        Compte compte = compteRepository.chercherparEmail(principal.getName());
+        
+        model.addAttribute("admin", compte);
+		return "admin";
+	}
 	
 	
 	@RequestMapping(value="/formNivFil", method=RequestMethod.GET)

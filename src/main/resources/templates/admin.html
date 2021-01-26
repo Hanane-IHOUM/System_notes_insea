@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layoutAdmin}">
+<head>
+<meta charset="utf-8"/>
+<title>Niveau_Filiere</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+		th:href="@{/css/bootstrap.min.css}"/>
+
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+		th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div layout:fragment="custom-content">
+	
+	<div class="container">
+
+	<img
+    	src="/css/insea.jpg"
+    	alt="photo insea"
+    	height="120px"
+    	width="200px"
+	/>
+	<span class="prof" th:text="${'Admin. ' + admin.username}"></span>
+	
+	<h3 class = "green centre3">Espace de Gestion de l'INSEA</h3>
+</div>
+</div>
+</body>
+</html>

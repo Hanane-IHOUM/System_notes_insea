@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layoutAdmin}">
 <head>
 <meta charset="utf-8"/>
 <title>Niveau_Filiere</title>
@@ -10,7 +12,7 @@
 		th:href="@{/css/style.css}"/>
 </head>
 <body>
-<div>
+<div layout:fragment="custom-content">
 	<div class="container spacer mil col-md-6 col-xs-12"  >
 		<div class="panel panel-default">
 			<div class="panel-heading">Ajouter une classe : Niveau et Filière</div>
@@ -44,7 +46,7 @@
 					
 					
 					<div>
-						<button type="submit" class="btn btn-primary">Enregistrer</button>
+						<button type="submit" class="btn mybtn">Enregistrer</button>
 					</div>
 					</div>
 				</form>

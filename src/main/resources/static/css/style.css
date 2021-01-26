@@ -99,3 +99,10 @@ background-color: #E8EEF4;
 .prof{
 	font-weight: bold;
 }
+
+.centre3 {
+	margin-top: 50px;
+    margin-left: 250px;
+    font-weight: bold;
+	font-size:40px;
+}
