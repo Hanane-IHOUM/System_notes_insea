@@ -102,7 +102,6 @@ public class ProfesseurController {
 			  }
 			  
 			  
-			  //model.addAttribute("etudiants", etudiants);
 			  model.addAttribute("notesNormal", notesNormal);
 			  model.addAttribute("elt", element.getElt_nom());
 			  

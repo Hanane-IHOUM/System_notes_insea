@@ -162,11 +162,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/saveModule", method = RequestMethod.POST)
-	public String saveModule(Model model, @Valid Module module, @Valid Niv_Fil niv_fil, @Valid Element element1, /*
-																													 * @Valid
-																													 * Element
-																													 * element2,
-																													 */
+	public String saveModule(Model model, @Valid Module module, @Valid Niv_Fil niv_fil, @Valid Element element1, 
 			@RequestParam(name = "professeur1", defaultValue = "") String professeur1,
 			@RequestParam(name = "professeur2", defaultValue = "") String professeur2,
 			@RequestParam(name = "nomelement", defaultValue = "") String nomelement,
@@ -185,10 +181,6 @@ public class AdminController {
 		moduleRepository.save(module);
 
 		Compte c1 = compteRepository.chercher(professeur1);
-		System.out.println("########################");
-		System.out.println(c1.getId());
-		System.out.println("########################");
-
 		Professeur p1 = professeurRepository.chercher(c1.getId());
 
 		element1.setProfesseur(p1);
@@ -235,7 +227,6 @@ public class AdminController {
 		List<Compte> comptes = compteRepository.comptesParRole("PROFESSEUR");
 		List<Professeur> professeurs = new ArrayList<>();
 		for (Compte compte : comptes) {
-			System.out.println(compte.getId());
 			professeurs.add(professeurRepository.chercher(compte.getId()));
 		}
 
@@ -250,9 +241,7 @@ public class AdminController {
 		List<Compte> comptes = compteRepository.comptesParRole("ETUDIANT");
 
 		List<Etudiant> etudiants = new ArrayList<>();
-		System.out.println("########################################");
 		for (Compte compte : comptes) {
-			System.out.println(compte.getId());
 			etudiants.add(etudiantRepository.findByCompteId(compte.getId()));
 		}
 
